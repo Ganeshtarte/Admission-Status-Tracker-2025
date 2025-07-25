@@ -26,13 +26,13 @@
   <div class="container">
     <!-- Header with logo and institute name -->
     <div class="header">
-      <img src="https://drive.google.com/uc?export=view&id=1DjW2bTWNNiv5ij_Z9c3SULoIRB8a0zjc/view?usp=sharing" alt="Institute Logo">
+      <img src=logo.jpg alt="Institute Logo">
       <div class="institute-name">Pimpri Chinchwad College of Engineering, Pune</div>
     </div>
 
     <h2>Admission Status Tracker 2025</h2>
     <div class="form-group">
-      <input type="text" id="searchInput" class="form-control" placeholder="Enter Application ID or PRN">
+      <input type="text" id="searchInput" class="form-control" placeholder="Enter Application ID or PRN or Name of the student">
     </div>
     <button onclick="searchStudent()" class="btn btn-primary">Search</button>
 
@@ -79,25 +79,26 @@
         const response = await fetch('https://script.google.com/macros/s/AKfycbyikBh381JzOaK9OxgppmYVTTbhnCCONe2PQUtf14Y45jfaGlWuyZifpWF1pp19IVf5/exec');
         const data = await response.json();
 
-        const student = data.find(s => s['Application ID'] === searchValue || s['PRN'] === searchValue);
+        const student = data.find(s => s['Application ID'] === searchValue || s['PRN'] === searchValue || s['Name of the student'] === searchValue);
 
         if (student) {
           resultDiv.innerHTML = `
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Application ID: ${student['Application ID']} | PRN: ${student['PRN']}</h5>
+                <h6 class="card-title">Name of the Student : ${student['Name of the student']}</h6>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Step I: ${getStatusBadge(student['Step I'])}</li>
-                  <li class="list-group-item">Step II: ${getStatusBadge(student['Step II'])}</li>
-                  <li class="list-group-item">Step III: ${getStatusBadge(student['Step III'])}</li>
-                  <li class="list-group-item">Step IV: ${getStatusBadge(student['Step IV'])}</li>
-                  <li class="list-group-item">Step V: ${getStatusBadge(student['Step V'])}</li>
+                  <li class="list-group-item">Step I : Registration and Admission form filling <br>${getStatusBadge(student['Step I'])}</li>
+                  <li class="list-group-item">Step II : Document Verification        <br>         ${getStatusBadge(student['Step II'])}</li>
+                  <li class="list-group-item">Step III : Admission Confirmation at CET Cell <br>   ${getStatusBadge(student['Step III'])}</li>
+                  <li class="list-group-item">Step IV: Document submission and ID card   <br>      ${getStatusBadge(student['Step IV'])}</li>
+                  <li class="list-group-item">Step V: Uniform                   <br>               ${getStatusBadge(student['Step V'])}</li>
                 </ul>
               </div>
             </div>
           `;
         } else {
-          resultDiv.innerHTML = "<div class='alert alert-danger'>No student found with this Application ID or PRN.</div>";
+          resultDiv.innerHTML = "<div class='alert alert-danger'>No student found with this Application ID or PRN or with Name.</div>";
         }
 
       } catch (error) {
