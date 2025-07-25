@@ -86,7 +86,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Application ID: ${student['Application ID']} | PRN: ${student['PRN']}</h5>
-                <h6 class="card-title">Name of the Student : ${student['Name of the student']}</h6>
+                <h5 class="card-title">Name of the Student : ${student['Name of the student']}</h5>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Step I : Registration and Admission form filling <br>${getStatusBadge(student['Step I'])}</li>
                   <li class="list-group-item">Step II : Document Verification        <br>         ${getStatusBadge(student['Step II'])}</li>
@@ -96,7 +96,7 @@
                 </ul>
               </div>
             </div>
-            <h6 class="card-title">"Thank you for your patience and support - Admission Team, PCCoE "</h6>
+            <h6 class="card-title">"Thank you for your patience and support - Admission Team, PCCoE"</h6>
           `;
         } else {
           resultDiv.innerHTML = "<div class='alert alert-danger'>No student found with this Application ID or PRN or with Name.</div>";
