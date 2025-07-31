@@ -76,7 +76,7 @@
       resultDiv.innerHTML = "Searching...";
 
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyikBh381JzOaK9OxgppmYVTTbhnCCONe2PQUtf14Y45jfaGlWuyZifpWF1pp19IVf5/exec');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyrou7MlVDZzF62VXL47kXBDV8xnvhVv6xOAj2WoL5h81NzaaLLlZ7e93V8t-l245Ay/exec');
         const data = await response.json();
 
         const student = data.find(s => s['Application ID'] === searchValue || s['PRN'] === searchValue || s['Name of the student'] === searchValue);
