@@ -78,6 +78,30 @@
   background-color: #e0a800;
 }
 
+.logo-3d {
+  border-radius: 8px; /* optional rounded corners */
+  background: white;  /* helps shadows show up */
+  padding: 6px;
+
+  /* 3D shadow effect */
+  box-shadow:
+    0 4px 6px rgba(0,0,0,0.5),   /* main drop shadow */
+    0 8px 12px rgba(0,0,0,0.4),  /* deeper layer */
+    inset 0 2px 4px rgba(255,255,255,0.6), /* top inner light */
+    inset 0 -2px 4px rgba(0,0,0,0.2);      /* bottom inner shadow */
+
+  /* optional "pop-out" animation on hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.logo-3d:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 6px 10px rgba(0,0,0,0.35),
+    0 12px 18px rgba(0,0,0,0.25),
+    inset 0 2px 4px rgba(255,255,255,0.7),
+    inset 0 -2px 4px rgba(0,0,0,0.25);
+}
+
 
     /* Content Area */
     .content {
@@ -90,7 +114,7 @@
 
   <!-- Top Ribbon -->
   <div class="top-ribbon">
-    <img src="logo.jpg" alt="College Logo">
+    <img src="logo.jpg" alt="College Logo" class="logo-3d">
     <div class="college-details">
       <div class="college-name">Pimpri Chinchwad College of Engineering, Pune</div>
       <div class="college-address">Sector 26, Pradhikaran, Nigdi, Pune - 411044, Maharashtra, India</div>
@@ -124,7 +148,7 @@
     <button class="btn btn-light left-button" onclick="window.open('https://www.pccoepune.com/top-placement-engineering-college-in-pune.php','_blank')">
      About Placement
     </button>
-    
+
     <button class="btn btn-light left-button" onclick="window.open('https://www.pccoepune.com/scholarship-details.php','_blank')">
       About Scholarship
     </button>
@@ -195,6 +219,39 @@
 
 </body>
 </html>
+<!-- Fee Structure Button -->
+<button class="btn btn-light left-button" data-toggle="modal" data-target="#feeModal">
+  Fee Structure
+</button>
+
+
+<!-- Fee Structure Modal -->
+<div class="modal fade" id="feeModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content" style="background:transparent; border:none; box-shadow:none;">
+      <div class="modal-body p-0 position-relative text-center">
+        <!-- Floating close button -->
+        <button type="button" class="close position-absolute" style="top:10px; right:15px; font-size:2rem; color:white; opacity:0.8;" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- Image -->
+        <img src="fee.jpg" alt="Fee Structure"
+             style="max-width:100%; height:auto; border:2px solid #ccc;
+                    box-shadow:0 0 15px rgba(0,0,0,0.4);
+                    filter: brightness(1.15) contrast(1.05);">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-backdrop.show {
+  opacity: 0.2 !important; /* lighter background */
+}
+</style>
 
 
 
+<!-- Bootstrap JS (needed for modal) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
