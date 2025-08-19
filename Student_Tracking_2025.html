@@ -4,15 +4,18 @@
   <title>Pimpri Chinchwad College of Engineering, Pune</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
+      height: auto;
+      overflow-x: hidden;
     }
 
     /* Top Ribbon */
     .top-ribbon {
       width: 100%;
-      background-color: #007bff   /* #218838*/; /* Bright blue */
+      background-color: #007bff;
       color: white;
       padding: 10px 0;
       text-align: center;
@@ -21,76 +24,76 @@
       left: 0;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .top-ribbon img {
       height: 80px;
-      vertical-align: middle;
       margin-right: 20px;
-    }
-    .college-details {
-      display: inline-block;
-      text-align: center;
-      vertical-align: middle;
-    }
-    .college-name {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .college-address {
-      font-size: 1rem;
-    }
-
-    /* Sidebar */
-.sidebar {
-  width: 200px;
-  background-color: #218838;
-  height: 100%;
-  position: fixed;
-  top: 100px; /* below top ribbon */
-  left: 0;
-  padding-top: 2cm; /* shift buttons down by 2cm */
-  z-index: 999;
-}
-
-.sidebar button {
-  width: 100%;
-  padding: 12px;
-  margin: 3px 6px;
-  background-color: #ffc109;
-  font-weight: bold;
-  text-align: left;
-  border: none;
-  border-bottom: 2px solid #004a99;
-  cursor: pointer;
-  border-radius: 8px; /* Rounded corners */
-}
-
-    .sidebar button:hover {
-      background-color: #e0a800;
-    }
-
-    /* College Logo with 3D effect */
-    .logo-3d {
       border-radius: 8px;
       background: white;
       padding: 6px;
-      box-shadow:
-        0 4px 6px rgba(0,0,0,0.5),
-        0 8px 12px rgba(0,0,0,0.4),
-        inset 0 2px 4px rgba(255,255,255,0.6),
-        inset 0 -2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5),
+                  0 8px 12px rgba(0,0,0,0.4),
+                  inset 0 2px 4px rgba(255,255,255,0.6),
+                  inset 0 -2px 4px rgba(0,0,0,0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .logo-3d:hover {
+
+    .top-ribbon img:hover {
       transform: translateY(-3px);
-      box-shadow:
-        0 6px 10px rgba(0,0,0,0.35),
-        0 12px 18px rgba(0,0,0,0.25),
-        inset 0 2px 4px rgba(255,255,255,0.7),
-        inset 0 -2px 4px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.35),
+                  0 12px 18px rgba(0,0,0,0.25),
+                  inset 0 2px 4px rgba(255,255,255,0.7),
+                  inset 0 -2px 4px rgba(0,0,0,0.25);
     }
 
-    /* News ticker */
+    .college-details {
+      text-align: center;
+    }
+    .college-name { font-size: 2rem; font-weight: bold; }
+    .college-address { font-size: 1rem; }
+
+    /* Flex container for sidebar + content */
+    .main-wrapper {
+      display: flex;
+      margin-top: 140px; /* space for top ribbon + news */
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background-color: #218838;
+      padding-top: 2cm;
+      /*  overflow-y: auto;*/
+      flex-shrink: 0;
+      height: auto;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 12px;
+      margin: 3px 6px;
+      background-color: #ffc109;
+      font-weight: bold;
+      text-align: left;
+      border: none;
+      border-bottom: 4px solid #004a99;
+      cursor: pointer;
+      border-radius: 12px;
+      color: white;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0.50,0.25,0.25,0.25);
+    }
+
+    .sidebar button:hover {
+      background-color: #1e7e34;
+      transform: translateY(-2px);
+    }
+
+    /* News Ticker */
     .news-container {
       background: #ffcc00;
       color: #000;
@@ -98,40 +101,66 @@
       font-weight: bold;
       overflow: hidden;
       white-space: nowrap;
-      position: relative;
-      margin-top: 100px; /* push below top ribbon */
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 100%;
+      z-index: 900;
     }
-    .news-text {
+
+    .news-text span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll-left 12s linear infinite;
+      animation: scroll-left 15s linear infinite;
     }
+
     @keyframes scroll-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-100%); }
     }
 
-    /* Content Area */
+    /* Main Content */
     .content {
-      margin-left: 220px; /* sidebar space */
-      padding: 120px 40px 40px; /* adjust for top ribbon & news */
+      margin-left: 40px; /* leave space for sidebar */
+      margin-top: 40px;  /* below top ribbon + news */
+      padding: 40px;
     }
+/* .important-news {
+  background: red;
+  color: yellow;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  animation: flash 2s infinite;
+} */
+
+@keyframes flash {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+ .result-card { margin-top: 20px; }
+
+    /* Modal backdrop */
+    .modal-backdrop.show { opacity: 0.2 !important; }
   </style>
 </head>
 <body>
 
   <!-- Top Ribbon -->
   <div class="top-ribbon">
-    <img src="logo.jpg" alt="College Logo" class="logo-3d">
+    <img src="logo.jpg" alt="College Logo">
     <div class="college-details">
       <div class="college-name">Pimpri Chinchwad College of Engineering, Pune</div>
       <div class="college-address">Sector 26, Pradhikaran, Nigdi, Pune - 411044, Maharashtra, India</div>
     </div>
   </div>
 
-  <!-- News Ticker -->  
+
+<!-- News Ticker -->
 <div class="news-container">
-  <div id="news-text" class="news-text"></div>
+  <div id="news-text" class="news-text"><span></span></div>
 </div>
 
 <script>
@@ -139,17 +168,24 @@
     const hour = new Date().getHours();
     let news = "";
 
-    if (hour >= 8 && hour < 10) {
+    // ⏰ Time-based news
+    if (hour >= 8 && hour < 10)
       news = "🔴 Good Morning: Admissions process will start sharply at 10:00am.";
-    } else if (hour >= 10 && hour < 12) {
-      news = "📰 Welcome all of you in PCCoE, please follow the guidline/instruction by admission cell.";
-    } else if (hour >= 12 && hour < 1) {
+    else if (hour >= 10 && hour < 12)
+      news = "📰 Welcome to PCCoE, please follow the instructions / guidlines by admission cell.";
+    else if (hour >= 12 && hour < 13)
       news = "📢 Lunch Break";
-    } else {
-      news = "🌙 Night Update: College offices will reopen at 9:00 AM tomorrow.";
-    }
+    else if (hour >= 13 && hour < 18)
+      news = "📰  Welcome to PCCoE, please follow the instructions / guidlines by admission cell.";
+    else
+      news = "🌙 Night Update: College offices reopen at 9:00 AM tomorrow.";
 
-    document.getElementById("news-text").textContent = news;
+    // 🚨 Important news (always visible)
+    const important = "🚨 Important: Induction Program for F.Y.B.Tech 2025 is scheduled on 11th Sept 2025. Please collect invitation slip after complition of admission.";
+
+    // 👉 Combine important + timed news
+    document.getElementById("news-text").innerHTML =
+      `<span>${important} &nbsp;&nbsp; | &nbsp;&nbsp; ${news}</span>`;
   }
 
   getSpotNews();
@@ -157,80 +193,44 @@
 
 
 
-
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <button onclick="window.open('https://fe2025.mahacet.org/StaticPages/HomePage','_blank')">
-      CET Cell 2025
-    </button>
-
-    <button onclick="window.open('https://www.pccoepune.com','_blank')">
-      College Website
-    </button> 
-
-    <button onclick="window.open('https://www.pccoepune.com/admission-home.php','_blank')">
-      Admission 2025
-    </button>
-
-    <button onclick="window.open('https://fe.pccoepune.com/','_blank')">
-      About A.S. & H. Department
-    </button>
-    
-    <button onclick="window.open('https://fe.pccoepune.com/syllabus.php','_blank')">
-      F.Y. Syllabus 2025
-    </button>
-
-    <button onclick="window.open('https://www.pccoepune.com/top-placement-engineering-college-in-pune.php','_blank')">
-      About Placement
-    </button>
-
-    <button onclick="window.open('https://www.pccoepune.com/scholarship-details.php','_blank')">
-      About Scholarship
-    </button>
-
-    <!-- Fee Structure Modal Trigger -->
-    <button data-toggle="modal" data-target="#feeModal">
-      Fee Structure
-    </button>
-  </div>
-
-  <!-- Main Content -->
-  <div class="content">
-    <h2>Admission Status Tracker 2025</h2>
-    <div class="form-group">
-      <input type="text" id="searchInput" class="form-control" placeholder="Enter Application ID or PRN or Name of the student (As per CET)">
+  <!-- Flex wrapper -->
+  <div class="main-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button onclick="window.open('https://fe2025.mahacet.org/StaticPages/HomePage','_blank')">CET Cell 2025</button>
+      <button onclick="window.open('https://www.pccoepune.com','_blank')">College Website</button>
+      <button onclick="window.open('https://www.pccoepune.com/admission-home.php','_blank')">Admission 2025</button>
+      <button onclick="window.open('https://fe.pccoepune.com/','_blank')">About A.S. & H. Department</button>
+      <button onclick="window.open('https://fe.pccoepune.com/syllabus.php','_blank')">F.Y. Syllabus 2025</button>
+      <button onclick="window.open('https://www.pccoepune.com/top-placement-engineering-college-in-pune.php','_blank')">About Placement</button>
+      <button onclick="window.open('https://www.pccoepune.com/scholarship-details.php','_blank')">About Scholarship</button>
+      <button data-toggle="modal" data-target="#feeModal">Fee Structure</button>
     </div>
-    <button onclick="searchStudent()" class="btn btn-primary">Search</button>
-    <div id="result" class="result-card mt-3"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <h2>Admission Status Tracker 2025</h2>
+      <div class="form-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Enter Application ID, PRN, or Name (As per CET)">
+      </div>
+      <button onclick="searchStudent()" class="btn btn-primary">Search</button>
+      <div id="result" class="result-card"></div>
+    </div>
   </div>
 
   <!-- Fee Structure Modal -->
-  <div class="modal fade" id="feeModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+  <div class="modal fade" id="feeModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content" style="background:transparent; border:none; box-shadow:none;">
         <div class="modal-body p-0 position-relative text-center">
-          <!-- Floating close button -->
-          <button type="button" class="close position-absolute" style="top:10px; right:15px; font-size:2rem; color:white; opacity:0.8;" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <!-- Image -->
-          <img src="fee.jpg" alt="Fee Structure"
-               style="max-width:100%; height:auto; border:2px solid #ccc;
-                      box-shadow:0 0 15px rgba(0,0,0,0.4);
-                      filter: brightness(1.15) contrast(1.05);">
+          <button type="button" class="close position-absolute" style="top:10px; right:15px; font-size:2rem; color:white; opacity:0.8;" data-dismiss="modal">&times;</button>
+          <img src="fee.jpg" alt="Fee Structure" style="max-width:100%; height:auto; border:2px solid #ccc; box-shadow:0 0 15px rgba(0,0,0,0.4); filter: brightness(1.15) contrast(1.05);">
         </div>
       </div>
     </div>
   </div>
 
-  <style>
-    .modal-backdrop.show {
-      opacity: 0.2 !important; /* lighter background */
-    }
-  </style>
-
-  <!-- Admission Status Script -->
+ <!-- Admission Status Script -->
   <script>
     // Function to return status badge
     function getStatusBadge(status) {
@@ -261,7 +261,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Application ID: ${student['Application ID']} | PRN: ${student['PRN']}</h5>
-                <h5 class="card-title" style="color : blue;">Name of the Student : ${student['Name of the student']}</h5>
+                <h5 class="card-title">Name of the Student : ${student['Name of the student']}</h5>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Step I : Registration and Admission form filling <br>${getStatusBadge(student['Step I'])}</li>
                   <li class="list-group-item">Step II : Document Verification <br>${getStatusBadge(student['Step II'])}</li>
@@ -284,8 +284,15 @@
   </script>
 
 
-  <!-- Bootstrap JS (needed for modal) -->
+  <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--  hide
+<div class="important-news">
+ 🚨 Important: Induction Program for F.Y.B.Tech 2025 is scheduled on 11th Sept 2025. Please collect invitation slip after complition of admission.
+</div>
+-->
+
 </body>
 </html>
